@@ -4365,6 +4365,24 @@
   //#define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
 #endif
 
+/**
+ * Farm Mode: Confirm On Finish
+ *
+ * For unattended print farms. After a print job ends — whether it
+ * finished normally or was aborted/failed — the printer will NOT
+ * report itself available to the farm host until an operator has
+ * physically removed the part and pressed the encoder button.
+ *
+ * Requires HOST_ACTION_COMMANDS. Reports one of:
+ *   //action:print_ok_confirmed
+ *   //action:print_fail_confirmed
+ *
+ * Whether the printer returns to the print queue or is taken out of
+ * service after a failure is a decision made by the farm host, not
+ * by this firmware.
+ */
+#define FARM_MODE_CONFIRM_ON_FINISH
+
 // @section extras
 
 /**

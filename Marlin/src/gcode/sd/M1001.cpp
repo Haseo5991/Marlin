@@ -54,6 +54,10 @@
   #include "../../feature/host_actions.h"
 #endif
 
+#if ENABLED(FARM_MODE_CONFIRM_ON_FINISH)
+  #include "../../feature/farm_confirm/farm_confirm.h"
+#endif
+
 #ifndef PE_LEDS_COMPLETED_TIME
   #define PE_LEDS_COMPLETED_TIME (30*60)
 #endif
@@ -93,13 +97,24 @@ void GcodeSuite::M1001() {
     SERIAL_ECHOLNPGM(STR_FILE_PRINTED);
   }
 
+  // Farm mode: block here (non-busy) until an operator physically
+  // removes the part and confirms via the encoder button. Only then
+  // is the host told the printer is available again.
+  #if ENABLED(FARM_MODE_CONFIRM_ON_FINISH)
+    farmConfirm.notify_and_wait(true);
+  #endif
+
   // Update the status LED color
   #if HAS_LEDS_OFF_FLAG
     if (long_print) {
       printerEventLEDs.onPrintCompleted();
       TERN_(EXTENSIBLE_UI, ExtUI::onUserConfirmRequired(GET_TEXT_F(MSG_PRINT_DONE)));
-      TERN_(HOST_PROMPT_SUPPORT, hostui.continue_prompt(GET_TEXT_F(MSG_PRINT_DONE)));
-      TERN_(HAS_RESUME_CONTINUE, marlin.wait_for_user_response(SEC_TO_MS(TERN(HAS_MARLINUI_MENU, PE_LEDS_COMPLETED_TIME, 30))));
+      // Skip this legacy wait when farm mode already handled confirmation
+      // above — otherwise the operator would need to click twice.
+      #if DISABLED(FARM_MODE_CONFIRM_ON_FINISH)
+        TERN_(HOST_PROMPT_SUPPORT, hostui.continue_prompt(GET_TEXT_F(MSG_PRINT_DONE)));
+        TERN_(HAS_RESUME_CONTINUE, marlin.wait_for_user_response(SEC_TO_MS(TERN(HAS_MARLINUI_MENU, PE_LEDS_COMPLETED_TIME, 30))));
+      #endif
       printerEventLEDs.onResumeAfterWait();
     }
   #endif

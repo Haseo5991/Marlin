@@ -32,6 +32,10 @@
   #include "../feature/host_actions.h"
 #endif
 
+#if ENABLED(FARM_MODE_CONFIRM_ON_FINISH)
+  #include "../feature/farm_confirm/farm_confirm.h"
+#endif
+
 #if ALL(BROWSE_MEDIA_ON_INSERT, PASSWORD_ON_SD_PRINT_MENU)
   #include "../feature/password/password.h"
 #endif
@@ -1827,6 +1831,9 @@ uint8_t expand_u8str_P(char * const outstr, PGM_P const ptpl, const int8_t ind, 
     print_job_timer.stop();
     TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("UI Aborted"), FPSTR(DISMISS_STR)));
     LCD_MESSAGE(MSG_PRINT_ABORTED);
+    #if ENABLED(FARM_MODE_CONFIRM_ON_FINISH)
+      farmConfirm.notify_and_wait(false);
+    #endif
     TERN_(HAS_MARLINUI_MENU, return_to_status());
     TERN_(DWIN_LCD_PROUI, hmiFlag.abort_flag = true);
   }
