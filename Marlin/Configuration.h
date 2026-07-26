@@ -3227,6 +3227,9 @@
 // ANET and Tronxy 128×64 Full Graphics Controller as used on Anet A6
 //
 #define ANET_FULL_GRAPHICS_LCD
+#define ST7920_DELAY_1 DELAY_NS(150)
+#define ST7920_DELAY_2 DELAY_NS(150)
+#define ST7920_DELAY_3 DELAY_NS(150)
 
 //
 // GUCOCO CTC 128×64 Full Graphics Controller as used on GUCOCO CTC A10S
