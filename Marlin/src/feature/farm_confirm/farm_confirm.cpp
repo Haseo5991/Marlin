@@ -78,7 +78,7 @@ void FarmConfirm::notify_and_wait(const bool was_ok) {
 
   // Bloquea (sin colgar el firmware) hasta que el operario elija una
   // opción en el menú. Sin timeout: este estado nunca se limpia solo.
-  while (resultado_confirmacion == Resultado::PENDIENTE) idle();
+  while (resultado_confirmacion == Resultado::PENDIENTE) marlin.idle();
 
   // Recién ahora, tras la elección física del operario, se informa al
   // host — según lo que el operario eligió, no según `was_ok`.

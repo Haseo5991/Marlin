@@ -220,7 +220,7 @@
   //#define FAN1_PIN                   -1   // Remove the fan signal on pin P2_04 (example: SKR 1.4 Turbo HE1 plug)
 
   #if DISABLED(PIDTEMPCHAMBER)
-    #define CHAMBER_CHECK_INTERVAL 5000   // (ms) Interval between checks in bang-bang control
+      #define CHAMBER_CHECK_INTERVAL 5000   // (ms) Interval between checks in bang-bang control
     #if ENABLED(CHAMBER_LIMIT_SWITCHING)
       #define CHAMBER_HYSTERESIS 2        // (°C) Only set the relevant heater state when ABS(T-target) > CHAMBER_HYSTERESIS
     #endif
@@ -308,8 +308,8 @@
  * THERMAL_PROTECTION_HYSTERESIS and/or THERMAL_PROTECTION_PERIOD
  */
 #if ALL(HAS_HOTEND, THERMAL_PROTECTION_HOTENDS)
-  #define THERMAL_PROTECTION_PERIOD        40 // (seconds)
-  #define THERMAL_PROTECTION_HYSTERESIS     4 // (°C)
+    #define THERMAL_PROTECTION_PERIOD 40        // Seconds
+    #define THERMAL_PROTECTION_HYSTERESIS 4     // Degrees Celsius
 
   //#define ADAPTIVE_FAN_SLOWING              // Slow down the part-cooling fan if the temperature drops
   #if ENABLED(ADAPTIVE_FAN_SLOWING)
@@ -331,50 +331,50 @@
    * and/or decrease WATCH_TEMP_INCREASE. WATCH_TEMP_INCREASE should not be set
    * below 2.
    */
-  #define WATCH_TEMP_PERIOD  40               // (seconds)
-  #define WATCH_TEMP_INCREASE 2               // (°C)
+    #define WATCH_TEMP_PERIOD  40               // Seconds
+    #define WATCH_TEMP_INCREASE 2               // Degrees Celsius
 #endif
 
 /**
  * Thermal Protection parameters for the bed are just as above for hotends.
  */
 #if TEMP_SENSOR_BED && ENABLED(THERMAL_PROTECTION_BED)
-  #define THERMAL_PROTECTION_BED_PERIOD        20 // (seconds)
-  #define THERMAL_PROTECTION_BED_HYSTERESIS     2 // (°C)
+    #define THERMAL_PROTECTION_BED_PERIOD        20 // Seconds
+    #define THERMAL_PROTECTION_BED_HYSTERESIS     2 // Degrees Celsius
 
   /**
    * As described above, except for the bed (M140/M190/M303).
    */
-  #define WATCH_BED_TEMP_PERIOD                60 // (seconds)
-  #define WATCH_BED_TEMP_INCREASE               2 // (°C)
+    #define WATCH_BED_TEMP_PERIOD                60 // Seconds
+    #define WATCH_BED_TEMP_INCREASE               2 // Degrees Celsius
 #endif
 
 /**
  * Thermal Protection parameters for the heated chamber.
  */
 #if TEMP_SENSOR_CHAMBER && ENABLED(THERMAL_PROTECTION_CHAMBER)
-  #define THERMAL_PROTECTION_CHAMBER_PERIOD    20 // (seconds)
-  #define THERMAL_PROTECTION_CHAMBER_HYSTERESIS 2 // (°C)
+    #define THERMAL_PROTECTION_CHAMBER_PERIOD    20 // Seconds
+    #define THERMAL_PROTECTION_CHAMBER_HYSTERESIS 2 // Degrees Celsius
 
   /**
    * Heated chamber watch settings (M141/M191).
    */
-  #define WATCH_CHAMBER_TEMP_PERIOD            60 // (seconds)
-  #define WATCH_CHAMBER_TEMP_INCREASE           2 // (°C)
+    #define WATCH_CHAMBER_TEMP_PERIOD            60 // Seconds
+    #define WATCH_CHAMBER_TEMP_INCREASE           2 // Degrees Celsius
 #endif
 
 /**
  * Thermal Protection parameters for the laser cooler.
  */
 #if TEMP_SENSOR_COOLER && ENABLED(THERMAL_PROTECTION_COOLER)
-  #define THERMAL_PROTECTION_COOLER_PERIOD     10 // (seconds)
-  #define THERMAL_PROTECTION_COOLER_HYSTERESIS  3 // (°C)
+    #define THERMAL_PROTECTION_COOLER_PERIOD     10 // Seconds
+    #define THERMAL_PROTECTION_COOLER_HYSTERESIS  3 // Degrees Celsius
 
   /**
    * Laser cooling watch settings (M143/M193).
    */
-  #define WATCH_COOLER_TEMP_PERIOD             60 // (seconds)
-  #define WATCH_COOLER_TEMP_INCREASE            3 // (°C)
+    #define WATCH_COOLER_TEMP_PERIOD             60 // Seconds
+    #define WATCH_COOLER_TEMP_INCREASE            3 // Degrees Celsius
 #endif
 
 #if ANY(THERMAL_PROTECTION_HOTENDS, THERMAL_PROTECTION_BED, THERMAL_PROTECTION_CHAMBER, THERMAL_PROTECTION_COOLER)
@@ -496,8 +496,8 @@
 #define AUTOTEMP
 #if ENABLED(AUTOTEMP)
   #define AUTOTEMP_OLDWEIGHT    0.98  // Factor used to weight previous readings (0.0 < value < 1.0)
-  #define AUTOTEMP_MIN        210
-  #define AUTOTEMP_MAX        250
+    #define AUTOTEMP_MIN          210
+    #define AUTOTEMP_MAX          250
   #define AUTOTEMP_FACTOR       0.1f
   // Turn on AUTOTEMP on M104/M109 by default using proportions set here
   //#define AUTOTEMP_PROPORTIONAL
@@ -1108,7 +1108,7 @@
 
   // On a 300mm bed a 5% grade would give a misalignment of ~1.5cm
   #define G34_MAX_GRADE              5    // (%) Maximum incline that G34 will handle
-  #define Z_STEPPER_ALIGN_ITERATIONS 5    // Number of iterations to apply during alignment
+    #define Z_STEPPER_ALIGN_ITERATIONS 3    // Number of iterations to apply during alignment
   #define Z_STEPPER_ALIGN_ACC        0.02 // Stop iterating early if the accuracy is better than this
 
   #define RESTORE_LEVELING_AFTER_G34      // Restore leveling after G34 is done?
@@ -1164,7 +1164,7 @@
    *
    * :{'M3_CW':'M3 Clockwise','M3_CCW':'M3 Counter-Clockwise','M4_CW':'M4 Clockwise','M4_CCW':'M4 Counter-Clockwise','M5_CW':'M5 Clockwise','M5_CCW':'M5 Counter-Clockwise'}
    */
-  #define TRAMMING_SCREW_THREAD M3_CW
+    #define TRAMMING_SCREW_THREAD 30
 
 #endif
 
@@ -1187,7 +1187,7 @@
 
   //#define FTM_DYNAMIC_FREQ                    // Enable for linear adjustment of XY shaping frequency according to Z or E
   #if ENABLED(FTM_DYNAMIC_FREQ)
-    #define FTM_DEFAULT_DYNFREQ_MODE dynFreqMode_DISABLED // Default mode of dynamic frequency calculation. (DISABLED, Z_BASED, MASS_BASED)
+      #define FTM_DEFAULT_DYNFREQ_MODE dynFreqMode_DISABLED // Default mode of dynamic frequency calculation. (Enums in ft_types.h)
   #endif
 
   // Disable unused shapers if you need more free space
@@ -1265,8 +1265,8 @@
    */
   #define FTM_BUFFER_SIZE             128   // Window size for trajectory generation, must be a power of 2 (e.g 64, 128, 256, ...)
                                             // The total buffered time in seconds is (FTM_BUFFER_SIZE/FTM_FS)
-  #define FTM_FS                     1000   // (Hz) Frequency for trajectory generation.
-  #define FTM_MIN_SHAPE_FREQ           20   // (Hz) Minimum shaping frequency, lower consumes more RAM
+    #define FTM_FS           1000                         // (Hz) Frequency for trajectory generation. (1 / FTM_TS)
+    #define FTM_MIN_SHAPE_FREQ 10                         // Minimum shaping frequency.
 
   /**
    * TMC2208 / TMC2208_STANDALONE drivers require a brief pause after a DIR change
@@ -1366,8 +1366,8 @@
 #define DISABLE_IDLE_E    // Shut down all idle extruders
 
 // Default Minimum Feedrates for printing and travel moves
-#define DEFAULT_MINIMUMFEEDRATE       0.0     // (mm/s) Minimum feedrate. Set with M205 S.
-#define DEFAULT_MINTRAVELFEEDRATE     0.0     // (mm/s) Minimum travel feedrate. Set with M205 T.
+#define DEFAULT_MINIMUMFEEDRATE             0.0     // (mm/s) Minimum feedrate. Set with M205 S.
+#define DEFAULT_MINTRAVELFEEDRATE           0.0     // (mm/s) Minimum travel feedrate. Set with M205 T.
 
 // Minimum time that a segment needs to take as the buffer gets emptied
 #define DEFAULT_MINSEGMENTTIME        20000   // (µs) Set with M205 B.
@@ -1387,7 +1387,7 @@
  */
 //#define XY_FREQUENCY_LIMIT      10 // (Hz) Maximum frequency of small zigzag infill moves. Set with M201 F<hertz>.
 #ifdef XY_FREQUENCY_LIMIT
-  #define XY_FREQUENCY_MIN_PERCENT 5 // (%) Minimum FR percentage to apply. Set with M201 S<min%>.
+    #define XY_FREQUENCY_MIN_PERCENT 5 // (percent) Minimum FR percentage to apply. Set with M201 G<min%>.
 #endif
 
 //
@@ -1445,20 +1445,20 @@
   //#define CALIBRATION_SCRIPT_PRE  "M117 Starting Auto-Calibration\nT0\nG28\nG12\nM117 Calibrating..."
   //#define CALIBRATION_SCRIPT_POST "M500\nM117 Calibration data saved"
 
-  #define CALIBRATION_FEEDRATE_SLOW             60    // (mm/min)
-  #define CALIBRATION_FEEDRATE_FAST           1200    // (mm/min)
-  #define CALIBRATION_FEEDRATE_TRAVEL         3000    // (mm/min)
+    #define CALIBRATION_FEEDRATE_SLOW             60    // mm/min
+    #define CALIBRATION_FEEDRATE_FAST           1200    // mm/min
+    #define CALIBRATION_FEEDRATE_TRAVEL         3000    // mm/min
 
   // The following parameters refer to the conical section of the nozzle tip.
-  #define CALIBRATION_NOZZLE_TIP_HEIGHT          1.0  // (mm)
-  #define CALIBRATION_NOZZLE_OUTER_DIAMETER      2.0  // (mm)
+    #define CALIBRATION_NOZZLE_TIP_HEIGHT          1.0  // mm
+    #define CALIBRATION_NOZZLE_OUTER_DIAMETER      2.0  // mm
 
   // Uncomment to enable reporting (required for "G425 V", but consumes flash).
   //#define CALIBRATION_REPORTING
 
   // The true location and dimension the cube/bolt/washer on the bed.
-  #define CALIBRATION_OBJECT_CENTER     { 264.0, -22.0,  -2.0 } // (mm)
-  #define CALIBRATION_OBJECT_DIMENSIONS {  10.0,  10.0,  10.0 } // (mm)
+    #define CALIBRATION_OBJECT_CENTER     { 264.0, -22.0,  -2.0 } // mm
+    #define CALIBRATION_OBJECT_DIMENSIONS {  10.0,  10.0,  10.0 } // mm
 
   // Comment out any sides which are unreachable by the probe. For best
   // auto-calibration results, all sides must be reachable.
@@ -1497,7 +1497,7 @@
  * Multi-stepping sends steps in bursts to reduce MCU usage for high step-rates.
  * This allows higher feedrates than the MCU could otherwise support.
  */
-#define MULTISTEPPING_LIMIT   16  // :[1, 2, 4, 8, 16, 32, 64, 128]
+#define MULTISTEPPING_LIMIT   16  //: [1, 2, 4, 8, 16, 32, 64, 128]
 
 /**
  * Adaptive Step Smoothing increases the resolution of multi-axis moves, particularly at step frequencies
@@ -1843,7 +1843,7 @@
 
   // The standard SD detect circuit reads LOW when media is inserted and HIGH when empty.
   // Enable this option and set to HIGH if your SD cards are incorrectly detected.
-  //#define SD_DETECT_STATE HIGH
+    #define SD_DETECT_STATE LOW
 
   //#define SD_IGNORE_AT_STARTUP            // Don't mount the SD card when starting up
   //#define SDCARD_READONLY                 // Read-only SD card (to save over 2K of flash)
@@ -1869,7 +1869,7 @@
 
   //#define MEDIA_MENU_AT_TOP               // Force the media menu to be listed on the top of the main menu
 
-  #define EVENT_GCODE_SD_ABORT "G28XY"      // G-code to run on SD Abort Print (e.g., "G28XY" or "G27")
+    #define EVENT_GCODE_SD_ABORT "G28XY\nG91\nG1 F1000 Z+20\nG1 F5000 Y" STRINGIFY(Y_MAX_POS) "\nG90\nM84 X Y E" // G-code to run on SD Abort Print (e.g., "G28XY" or "G27")
 
   #if ENABLED(PRINTER_EVENT_LEDS)
     #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination
@@ -2176,7 +2176,7 @@
 #endif // HAS_MARLINUI_U8GLIB
 
 #if HAS_MARLINUI_U8GLIB || IS_DWIN_MARLINUI
-  #define MENU_HOLLOW_FRAME           // Enable to save many cycles by drawing a hollow frame on Menu Screens
+    #define MENU_HOLLOW_FRAME           // Enable to save many cycles by drawing a hollow frame on Menu Screens
   //#define OVERLAY_GFX_REVERSE       // Swap the CW/CCW indicators in the graphics overlay
 
   // Frivolous Game Options
@@ -2396,7 +2396,7 @@
 // ADC Button Debounce
 //
 #if HAS_ADC_BUTTONS
-  #define ADC_BUTTON_DEBOUNCE_DELAY 16  // (count) Increase if buttons bounce or repeat too fast
+    #define ADC_BUTTON_DEBOUNCE_DELAY 16  // Increase if buttons bounce or repeat too fast
 #endif
 
 //#define FAST_BUTTON_POLLING           // Poll buttons at ~1kHz on 8-bit AVR. Set to 'false' for slow polling on 32-bit.
@@ -2430,9 +2430,9 @@
 #if ENABLED(BABYSTEPPING)
   //#define EP_BABYSTEPPING                 // M293/M294 babystepping with EMERGENCY_PARSER support
   //#define BABYSTEP_WITHOUT_HOMING
-  //#define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement)
+    #define BABYSTEP_ALWAYS_AVAILABLE         // Allow babystepping at all times (not just during movement).
   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
-  //#define BABYSTEP_INVERT_Z               // Enable if Z babysteps should go the other way
+    #define BABYSTEP_INVERT_Z false           // Change if Z babysteps should go the other way
   //#define BABYSTEP_MILLIMETER_UNITS       // Specify BABYSTEP_MULTIPLICATOR_(XY|Z) in mm instead of micro-steps
   #define BABYSTEP_MULTIPLICATOR_Z  1       // (steps or mm) Steps or millimeter distance for each Z babystep
   #define BABYSTEP_MULTIPLICATOR_XY 1       // (steps or mm) Steps or millimeter distance for each XY babystep
@@ -3126,7 +3126,7 @@
   //#define FILAMENT_CHANGE_RESUME_ON_INSERT      // Automatically continue / load filament when runout sensor is triggered again.
   //#define PAUSE_REHEAT_FAST_RESUME              // Reduce number of waits by not prompting again post-timeout before continuing.
 
-  //#define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change.
+    #define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change. //andy
   //#define HOME_BEFORE_FILAMENT_CHANGE           // If needed, home before parking for filament change
 
   //#define FILAMENT_LOAD_UNLOAD_GCODES           // Add M701/M702 Load/Unload G-codes, plus Load/Unload in the LCD Prepare menu.
@@ -4357,7 +4357,7 @@
 #define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
   //#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
-  #define HOST_PROMPT_SUPPORT             // Initiate host prompts to get user feedback
+    #define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
   #if ENABLED(HOST_PROMPT_SUPPORT)
     #define HOST_STATUS_NOTIFICATIONS     // Send some status messages to the host as notifications
   #endif
@@ -4425,7 +4425,7 @@
   //#define I2CPE_ENC_1_TICKS_REV     (16 * 200)            // Only needed for rotary encoders; number of stepper
                                                             // steps per full revolution (motor steps/rev * microstepping)
   //#define I2CPE_ENC_1_INVERT                              // Invert the direction of axis travel.
-  #define I2CPE_ENC_1_EC_METHOD     I2CPE_ECM_MICROSTEP     // Type of error correction.
+    #define I2CPE_ENC_1_EC_METHOD     I2CPE_ECM_MICROSTEP     // Type of error error correction.
   #define I2CPE_ENC_1_EC_THRESH     0.10                    // Threshold size for error (in mm) above which the
                                                             // printer will attempt to correct the error; errors
                                                             // smaller than this are ignored to minimize effects of
@@ -4532,7 +4532,7 @@
 //#define FREEZE_FEATURE
 #if ENABLED(FREEZE_FEATURE)
   //#define FREEZE_PIN   -1   // Override the default (KILL) pin here
-  #define FREEZE_STATE  LOW   // State of pin indicating freeze
+    #define FREEZE_STATE LOW  // State of pin indicating freeze
 #endif
 
 #if ANY(FREEZE_FEATURE, REALTIME_REPORTING_COMMANDS)
@@ -4681,19 +4681,19 @@
 
     // Settings for filament load / unload from the LCD menu.
     // This is for Průša MK3-style extruders. Customize for your hardware.
-    #define MMU2_FILAMENTCHANGE_EJECT_FEED 80.0
+      #define MMU2_FILAMENTCHANGE_EJECT_FEED 80.0
 
     // G-code to execute when MMU2 F.I.N.D.A. probe detects filament runout
-    #define MMU2_FILAMENT_RUNOUT_SCRIPT "M600"
+      #define MMU2_FILAMENT_RUNOUT_SCRIPT "M600"
 
     // MMU2 sequences use mm/min. Not compatible with MMU3, which use mm/sec.
-    #define MMU2_LOAD_TO_NOZZLE_SEQUENCE \
+      #define MMU2_LOAD_TO_NOZZLE_SEQUENCE \
       {  4.4,  871 }, \
       { 10.0, 1393 }, \
       {  4.4,  871 }, \
       { 10.0,  198 }
 
-    #define MMU2_RAMMING_SEQUENCE \
+      #define MMU2_RAMMING_SEQUENCE \
       {   1.0, 1000 }, \
       {   1.0, 1500 }, \
       {   2.0, 2000 }, \
